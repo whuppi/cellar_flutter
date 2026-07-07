@@ -1,0 +1,4 @@
+[submodule "cellar"]
+	path = cellar
+	url = https://github.com/whuppi/cellar.git
+	branch = dev

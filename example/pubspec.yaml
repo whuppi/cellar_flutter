@@ -1,0 +1,36 @@
+name: cellar_example
+description: "Demo app for cellar_flutter — every capability on real devices."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.0-296.3.beta
+
+dependencies:
+  flutter:
+    sdk: flutter
+  crypto: ^3.0.6   # HMAC for the demo FileEncryptor (demo-grade crypto)
+  cupertino_icons: ^1.0.8
+
+  # The Flutter front door — re-exports cellar and resolves storage
+  # roots (openCellar). Pulled from the parent package via path; CI
+  # replaces this with the published version at release verification.
+  cellar_flutter:
+    path: ../
+  # Direct dep for the low-level kit imports (EncryptedBackend, the
+  # BYO seams) the Encrypt/Custom tabs demonstrate.
+  cellar:
+    path: ../cellar
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  # Harness + robots shared by journeys and the smoke suite.
+  cellar_example_test_support:
+    path: test_support
+  integration_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

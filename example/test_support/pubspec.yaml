@@ -1,0 +1,37 @@
+name: cellar_example_test_support
+description: >-
+  Reusable UI-test harness (robot pattern + device matrix) plus the
+  example app's robots. Shared by the example's host-VM journeys
+  (test/) and its on-device smoke suite (integration_test/) through one
+  package: import, so neither root reaches across the other with ../
+  paths — the constraint that breaks web integration tests.
+publish_to: none
+version: 0.0.0
+
+environment:
+  sdk: ^3.11.0-296.3.beta
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  # The example app under test — robots drive its main() and reuse its
+  # demo fixtures. This forms a path-dependency cycle with the example's
+  # dev_dependency on this package; pub allows it for path
+  # dev-dependencies (they're outside the published graph).
+  cellar_example:
+    path: ../
+  # The planted answer for "which folder?" — journeys run on the host VM
+  # where the path_provider plugin has no platform side.
+  path_provider_platform_interface: ^2.1.2
+  # The virtual disk journeys run on — Flutter's own testing pattern:
+  # IOOverrides.runZoned + MemoryFileSystem, so the package's dart:io
+  # calls complete as microtasks under fake time (no runAsync, no
+  # animation-clock clashes).
+  file: ^7.0.1
+
+flutter:
+  uses-material-design: true
