@@ -2,7 +2,7 @@
 
 Statuses: **DONE** · **BUILDING** · **PLANNED** · **WONT_DO** (with
 reason). The core's capabilities live in the
-[cellar roadmap](https://github.com/whuppi/cellar/blob/dev/docs/CAPABILITY_ROADMAP.md).
+[cellar roadmap](https://github.com/whuppi/cellar/blob/v1.0.0-dev.0/docs/CAPABILITY_ROADMAP.md).
 
 | Capability | Status | Notes |
 |---|---|---|

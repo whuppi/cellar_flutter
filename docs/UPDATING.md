@@ -22,7 +22,9 @@ parameter here, forwarded. Test: the package test constructs with it.
 
 `cellar` is a hosted dependency; `pubspec.lock` certifies the exact
 version CI ran against. When cellar releases, Dependabot opens the bump
-PR — the matrix on that PR is the certification. To test against
+PR — the matrix on that PR is the certification. The bump also updates
+the version-tagged core doc links (README, SECURITY, docs/) — the
+`core_link_pin` test fails the PR otherwise. To test against
 UNRELEASED core changes, open a throwaway PR overriding the dep with a
 git ref (`cellar: {git: {url: ../cellar.git, ref: dev}}`-style) — read
 the verdict, close unmerged.
