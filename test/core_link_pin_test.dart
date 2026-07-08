@@ -8,26 +8,31 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('core repo links carry the pubspec version tag', () {
     final pubspec = File('pubspec.yaml').readAsStringSync();
-    final floor =
-        RegExp(r'^  cellar: \^(\S+)$', multiLine: true).firstMatch(pubspec);
+    final floor = RegExp(
+      r'^  cellar: \^(\S+)$',
+      multiLine: true,
+    ).firstMatch(pubspec);
     expect(floor, isNotNull, reason: 'pubspec must carry cellar: ^<version>');
     final tag = 'v${floor!.group(1)}';
 
     final docs = <File>[
       File('README.md'),
       File('SECURITY.md'),
-      ...Directory('docs')
-          .listSync()
-          .whereType<File>()
-          .where((f) => f.path.endsWith('.md')),
+      ...Directory(
+        'docs',
+      ).listSync().whereType<File>().where((f) => f.path.endsWith('.md')),
     ];
     final ref = RegExp('whuppi/cellar/(?:blob|tree)/([^/]+)/');
     for (final doc in docs) {
       for (final m in ref.allMatches(doc.readAsStringSync())) {
-        expect(m.group(1), tag,
-            reason: '${doc.path} links the core at "${m.group(1)}" — '
-                'must be $tag (the pubspec version). Update the link when '
-                'bumping the core dependency.');
+        expect(
+          m.group(1),
+          tag,
+          reason:
+              '${doc.path} links the core at "${m.group(1)}" — '
+              'must be $tag (the pubspec version). Update the link when '
+              'bumping the core dependency.',
+        );
       }
     }
   });
