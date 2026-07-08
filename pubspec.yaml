@@ -1,5 +1,5 @@
 name: cellar_flutter
-version: 0.0.0
+version: 1.0.0-dev.0
 description: >-
   Object storage for Flutter — one openCellar() call, six platforms.
   Re-exports the full cellar API: partitions, lifecycle, encryption,
