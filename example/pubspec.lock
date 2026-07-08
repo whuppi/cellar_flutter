@@ -28,10 +28,11 @@ packages:
   cellar:
     dependency: "direct main"
     description:
-      path: "../../cellar"
-      relative: true
-    source: path
-    version: "0.0.0"
+      name: cellar
+      sha256: c9df75fe125a858971acc0421bf454510740a3daa986cce84da56c0157759b0f
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0-dev.0"
   cellar_example_test_support:
     dependency: "direct dev"
     description:
