@@ -1,10 +1,9 @@
 name: cellar_flutter
 version: 0.0.0
 description: >-
-  The Flutter front door for cellar: openCellar() resolves platform
-  storage roots via path_provider and returns an opened, ready-to-use
-  Cellar — one identical line on iOS, Android, macOS, Windows, Linux,
-  and web. Re-exports the full cellar API.
+  Object storage for Flutter — one openCellar() call returns a ready
+  store on iOS, Android, macOS, Windows, Linux, and web. Re-exports the
+  full cellar API: partitions, lifecycle, encryption, streaming.
 homepage: https://github.com/whuppi/cellar_flutter
 repository: https://github.com/whuppi/cellar_flutter
 issue_tracker: https://github.com/whuppi/cellar_flutter/issues
