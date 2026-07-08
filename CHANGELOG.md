@@ -59,3 +59,7 @@ CONTENT RULES (never change)
 -->
 
 <!-- Add new versions below, newest first. -->
+
+## 1.0.0
+
+First stable release — cellar for Flutter, zero-setup storage on all six platforms.

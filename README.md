@@ -23,9 +23,9 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license: MIT"></a>
 </p>
 
-Object storage for Flutter apps. One `openCellar()` call gives you a ready-to-use store on iOS, Android, macOS, Windows, Linux, and web — real files on native, IndexedDB in the browser, identical API everywhere.
+File and data storage for Flutter with zero setup. One call gives you a ready-to-use store on iOS, Android, macOS, Windows, Linux, and web — real files on native, IndexedDB in the browser, identical API everywhere.
 
-Named partitions with self-cleaning lifecycle rules, tenant scoping, bring-your-own encryption, streaming I/O that never buffers a whole object, atomic writes, typed errors, and platform-local handles for FFI and browser APIs. No `kIsWeb`, no platform branches, no setup — anywhere in your code.
+Partitions with self-cleaning rules, per-user scoping, bring-your-own encryption, streaming that never buffers a whole file, atomic writes, typed errors — and a real path or URL whenever a native or browser API needs one. No `kIsWeb`, no platform branches, anywhere in your code.
 
 > like it? a [⭐ star](https://github.com/whuppi/cellar_flutter) or [👍 like](https://pub.dev/packages/cellar_flutter) is the entire marketing budget. [Bugs & features →](https://github.com/whuppi/cellar_flutter/issues)
 

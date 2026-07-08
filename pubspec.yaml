@@ -1,9 +1,9 @@
 name: cellar_flutter
 version: 0.0.0
 description: >-
-  Object storage for Flutter — one openCellar() call, six platforms.
-  Re-exports the full cellar API: partitions, lifecycle, encryption,
-  streaming, materialize.
+  Cross-platform file and data storage for Flutter, zero setup — files
+  land in the right folder on Android, iOS, macOS, Windows, Linux, and
+  web. Caching, auto-cleanup, encryption.
 homepage: https://github.com/whuppi/cellar_flutter
 repository: https://github.com/whuppi/cellar_flutter
 issue_tracker: https://github.com/whuppi/cellar_flutter/issues
@@ -11,8 +11,8 @@ issue_tracker: https://github.com/whuppi/cellar_flutter/issues
 topics:
   - storage
   - cache
+  - files
   - encryption
-  - indexeddb
   - cross-platform
 
 environment:
