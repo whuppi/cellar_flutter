@@ -17,8 +17,6 @@
 
 # CI and config: repo owner only
 /.github/                  @chaudharydeepanshu
-/.gitmodules               @chaudharydeepanshu
-/cellar                    @chaudharydeepanshu
 /.githooks/                @chaudharydeepanshu
 
 # Build + supply-chain machinery: repo owner only. Holds the commit-types list

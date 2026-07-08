@@ -7,7 +7,7 @@ Contributions are welcome.
 ## Setup
 
 ```bash
-git clone --recursive https://github.com/whuppi/cellar_flutter.git
+git clone https://github.com/whuppi/cellar_flutter.git
 cd cellar_flutter
 make hooks               # activates commit-msg + pre-commit (run once)
 fvm install              # downloads the SDK version pinned in .fvmrc
@@ -16,8 +16,15 @@ fvm flutter test
 ```
 
 **Requires:** [FVM](https://fvm.app) (`.fvmrc` pins the exact Flutter
-version). The `cellar` core is a pinned git submodule at `cellar/` —
-clone with `--recursive` (or run `git submodule update --init` after).
+version). The `cellar` core resolves from pub.dev at the locked version.
+Co-developing against a local core checkout? Drop a gitignored
+`pubspec_overrides.yaml` next to each pubspec:
+
+```yaml
+dependency_overrides:
+  cellar:
+    path: ../cellar   # ../../cellar from example/
+```
 
 **Without FVM:** all Makefile commands accept `DART` and `FLUTTER`
 overrides:
@@ -41,9 +48,9 @@ Runs `format` + `analyze` (package + example) + `analyze-floor`
 device profile, on the host VM). Must pass. Don't suppress with
 `// ignore:` — fix the underlying issue.
 
-Touching the `cellar` core too? Its changes land in its own repo
-first; then bump the submodule pin here (commit inside `cellar/`, push
-there, `git add cellar` here) and run `make check`.
+Touching the `cellar` core too? Its changes land in its own repo and
+release first; the Dependabot bump PR here runs the full matrix against
+that release.
 
 ---
 

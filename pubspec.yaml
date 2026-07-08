@@ -1,9 +1,9 @@
 name: cellar_flutter
 version: 0.0.0
 description: >-
-  Object storage for Flutter — one openCellar() call returns a ready
-  store on iOS, Android, macOS, Windows, Linux, and web. Re-exports the
-  full cellar API: partitions, lifecycle, encryption, streaming.
+  Object storage for Flutter — one openCellar() call, six platforms.
+  Re-exports the full cellar API: partitions, lifecycle, encryption,
+  streaming, materialize.
 homepage: https://github.com/whuppi/cellar_flutter
 repository: https://github.com/whuppi/cellar_flutter
 issue_tracker: https://github.com/whuppi/cellar_flutter/issues
@@ -22,12 +22,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The pure-Dart core this package fronts (and re-exports). Development
-  # resolves it from the pinned git submodule via the override below
-  # (CI clones --recursive); a release publishes against the hosted
-  # version and drops the override.
-  cellar:
-    path: cellar
+  # The pure-Dart core this package fronts (and re-exports). The lock
+  # certifies the exact version CI ran against; Dependabot bumps it per
+  # cellar release. Local co-development: pubspec_overrides.yaml (see
+  # CONTRIBUTING).
+  cellar: ^1.0.0-dev.0
 
   # Storage roots on native platforms (support + cache directories).
   # Imported only behind the native side of a conditional import — web

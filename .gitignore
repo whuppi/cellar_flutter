@@ -321,3 +321,6 @@ pip-wheel-*
 *.temp
 *.orig
 .sass-cache/
+
+# Local co-development override (points cellar at a sibling checkout)
+pubspec_overrides.yaml

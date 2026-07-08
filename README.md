@@ -310,7 +310,7 @@ The [example app](example/) exercises every capability in one file — seven tab
 | [Capabilities](docs/CAPABILITY_ROADMAP.md) | Status per capability |
 | [Updating](docs/UPDATING.md) | Maintenance recipes and the pinned-behavior watchlist |
 | [Contributing](CONTRIBUTING.md) | Setup, PR workflow, keeping openCellar in lockstep with the core |
-| [cellar's docs](https://github.com/whuppi/cellar/tree/dev/docs) | The engine's architecture, durability mechanics, roadmap |
+| [cellar's docs](https://github.com/whuppi/cellar/tree/v1.0.0-dev.0/docs) | The engine's architecture, durability mechanics, roadmap |
 
 ---
 
