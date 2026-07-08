@@ -1,6 +1,12 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
+  errors:
+    # The core is consumed from the pinned submodule (path dep) during
+    # development; the release flow swaps it to the published version at
+    # publish time, so the not-publishable-with-path-deps warning does
+    # not apply to what actually ships.
+    invalid_dependency: ignore
   exclude:
     # The pinned cellar core submodule — its own repo analyzes it; here
     # it's vendored source (same treatment as pdf_manipulator's vendor/).

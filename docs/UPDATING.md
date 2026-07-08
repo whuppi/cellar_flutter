@@ -30,9 +30,14 @@ that isn't pushed in the core repo.
 ## S3 — Release
 
 Same two-lane changelog model as the core (`CHANGELOG.pre.md` dev /
-`CHANGELOG.md` stable), stamped by the release tooling when the repo
-opens. The packages version independently; this one constrains its
-`cellar` dependency to the compatible range at publish time.
+`CHANGELOG.md` stable). The packages version independently — decoupled
+by the pin: at release time the `release_stamp_tree` hook
+(`tool/ci/release_hooks.sh`) reads the submodule pin's release tag and
+rewrites the `cellar` path dep to `^<that version>` (caret with the
+pin-certified floor — never "latest"), then drops the submodule from
+the tag tree. The release ABORTS if the pin isn't sitting exactly on a
+published cellar tag, so the order is always: release cellar → bump
+the pin here (S2) → release this.
 
 ---
 

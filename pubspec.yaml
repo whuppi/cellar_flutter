@@ -16,20 +16,17 @@ topics:
   - indexeddb
   - cross-platform
 
-# Not published yet — this line goes away when the repo opens and the
-# release tooling takes over. Consumed by path from sewali + bokumi.
-publish_to: none
-
 environment:
-  sdk: ">=3.11.0-0 <4.0.0"  # -0 floor: the pinned fvm SDK is a 3.11 beta
+  sdk: ">=3.11.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  # The pure-Dart core this package fronts (and re-exports) — a pinned
-  # git submodule of whuppi/cellar. CI clones --recursive; the release
-  # flow swaps this to the published version.
+  # The pure-Dart core this package fronts (and re-exports). Development
+  # resolves it from the pinned git submodule via the override below
+  # (CI clones --recursive); a release publishes against the hosted
+  # version and drops the override.
   cellar:
     path: cellar
 

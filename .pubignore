@@ -6,3 +6,9 @@ tool/
 Makefile
 docs/
 .githooks/
+
+# Banner: ship only the optimized *-web-min.webp the README embeds. The
+# heavy *-3x.png sources stay tracked in git (org-quality preservation)
+# but out of the published download — nothing references them on pub.dev.
+assets/cellar_flutter-banner-dark-3x.png
+assets/cellar_flutter-banner-light-3x.png

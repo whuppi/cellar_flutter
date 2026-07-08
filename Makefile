@@ -59,10 +59,15 @@ analyze-floor:
 
 # pana's platform attribution — all six targets must survive the
 # conditional-import walk (the stub default is what makes web attribute).
-# The cellar core is a submodule INSIDE the repo, so the gate's snapshot
-# carries it and the `path: cellar` dep resolves — no wrapper needed.
+# pana resolves deps as pub.dev would: dependency_overrides are ignored,
+# and the hosted `cellar` dep can't solve until the core is published.
+# For the gate's duration the dep is swapped to the submodule path (the
+# snapshot carries `cellar/`), then the pubspec is restored.
 platforms:
-	@DART="$(DART)" EXPECTED_PLATFORMS="android ios linux macos windows web" bash tool/platforms_gate.sh
+	@cp pubspec.yaml .pubspec.yaml.platforms-backup
+	@python3 -c "import pathlib; p = pathlib.Path('pubspec.yaml'); s = p.read_text(); s = s.replace('  cellar: ^1.0.0', '  cellar:\n    path: cellar'); s = s.split('\ndependency_overrides:')[0]; p.write_text(s)"
+	@DART="$(DART)" EXPECTED_PLATFORMS="android ios linux macos windows web" bash tool/platforms_gate.sh; \
+	rc=$$?; mv .pubspec.yaml.platforms-backup pubspec.yaml; exit $$rc
 
 lint-shell:
 	@bash tool/lint_shell.sh
