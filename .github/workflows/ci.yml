@@ -51,8 +51,7 @@ jobs:
       code: ${{ steps.filter.outputs.code }}
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-        with:
-          persist-credentials: false
+        with: { submodules: recursive, persist-credentials: false }
       - uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         id: filter
         with:
@@ -77,9 +76,8 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-        with:
-          persist-credentials: false
-      - uses: whuppi/ci/actions/make-target@v2.0.0
+        with: { submodules: recursive, persist-credentials: false }
+      - uses: whuppi/ci/actions/make-target@v2.0.4
         with:
           make-target: format
 
@@ -93,9 +91,8 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-        with:
-          persist-credentials: false
-      - uses: whuppi/ci/actions/make-target@v2.0.0
+        with: { submodules: recursive, persist-credentials: false }
+      - uses: whuppi/ci/actions/make-target@v2.0.4
         with:
           make-target: analyze
 
@@ -111,9 +108,8 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-        with:
-          persist-credentials: false
-      - uses: whuppi/ci/actions/make-target@v2.0.0
+        with: { submodules: recursive, persist-credentials: false }
+      - uses: whuppi/ci/actions/make-target@v2.0.4
         with:
           make-target: analyze-floor
 
@@ -130,14 +126,13 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-        with:
-          persist-credentials: false
-      - uses: whuppi/ci/actions/make-target@v2.0.0
+        with: { submodules: recursive, persist-credentials: false }
+      - uses: whuppi/ci/actions/make-target@v2.0.4
         with:
           make-target: platforms
 
   test:
-    name: Test guards
+    name: Package tests
     needs: [inputs, changes]
     if: needs.changes.outputs.code == 'true'
     runs-on: ${{ needs.inputs.outputs.runner }}
@@ -146,14 +141,13 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-        with:
-          persist-credentials: false
-      - uses: whuppi/ci/actions/make-target@v2.0.0
+        with: { submodules: recursive, persist-credentials: false }
+      - uses: whuppi/ci/actions/make-target@v2.0.4
         with:
           make-target: test
 
   test-example-matrix:
-    name: Unit tests (VM)
+    name: Example journeys (host VM)
     needs: [inputs, changes]
     if: needs.changes.outputs.code == 'true'
     runs-on: ${{ needs.inputs.outputs.runner }}
@@ -162,9 +156,8 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-        with:
-          persist-credentials: false
-      - uses: whuppi/ci/actions/make-target@v2.0.0
+        with: { submodules: recursive, persist-credentials: false }
+      - uses: whuppi/ci/actions/make-target@v2.0.4
         with:
           make-target: test-example-matrix
 
@@ -185,9 +178,8 @@ jobs:
           ANALYZE: ${{ needs.analyze.result }}
           FLOOR: ${{ needs.analyze-floor.result }}
           PLATFORMS: ${{ needs.platforms.result }}
-          GUARDS: ${{ needs.test-guards.result }}
-          UNIT: ${{ needs.test-unit.result }}
-          WEB: ${{ needs.test-web.result }}
+          PKG: ${{ needs.test.result }}
+          JOURNEYS: ${{ needs.test-example-matrix.result }}
         run: |
           # A failed (not skipped) changes job clears its outputs, so CODE
           # arrives empty — which must NOT read as "doc-only". Gate on the job
@@ -200,8 +192,8 @@ jobs:
             echo "Doc-only PR — CI gate passes"
             exit 0
           fi
-          if [[ "$FORMAT" != "success" ]] || [[ "$ANALYZE" != "success" ]] || [[ "$FLOOR" != "success" ]] || [[ "$PLATFORMS" != "success" ]] || [[ "$GUARDS" != "success" ]] || [[ "$UNIT" != "success" ]] || [[ "$WEB" != "success" ]]; then
-            echo "FAILED: format=$FORMAT analyze=$ANALYZE floor=$FLOOR platforms=$PLATFORMS guards=$GUARDS unit=$UNIT web=$WEB"
+          if [[ "$FORMAT" != "success" ]] || [[ "$ANALYZE" != "success" ]] || [[ "$FLOOR" != "success" ]] || [[ "$PLATFORMS" != "success" ]] || [[ "$PKG" != "success" ]] || [[ "$JOURNEYS" != "success" ]]; then
+            echo "FAILED: format=$FORMAT analyze=$ANALYZE floor=$FLOOR platforms=$PLATFORMS pkg=$PKG journeys=$JOURNEYS"
             exit 1
           fi
           echo "All CI checks passed"
