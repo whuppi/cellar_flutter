@@ -84,6 +84,11 @@ jobs:
       matrix:
         include:
 
+          # ── Package tests ──
+          - { name: "pkg: Linux (ubuntu-x64)",     runner: ubuntu-24.04,        make: test, timeout: 20 }
+          - { name: "pkg: macOS (macos-arm64)",    runner: macos-14,            make: test, timeout: 20 }
+          - { name: "pkg: Windows (win-x64)",      runner: windows-2025-vs2026, make: test, timeout: 30 }
+
           # ── Example journeys (host VM, in-memory) ──
           - { name: "int: Journeys (ubuntu-x64)",      runner: ubuntu-24.04,        make: test-example-matrix, timeout: 20 }
           - { name: "int: Journeys (macos-arm64) [P]", runner: macos-14,            make: test-example-matrix, timeout: 20, portability: true }

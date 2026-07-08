@@ -178,9 +178,8 @@ jobs:
           ANALYZE: ${{ needs.analyze.result }}
           FLOOR: ${{ needs.analyze-floor.result }}
           PLATFORMS: ${{ needs.platforms.result }}
-          GUARDS: ${{ needs.test-guards.result }}
-          UNIT: ${{ needs.test-unit.result }}
-          WEB: ${{ needs.test-web.result }}
+          PKG: ${{ needs.test.result }}
+          JOURNEYS: ${{ needs.test-example-matrix.result }}
         run: |
           # A failed (not skipped) changes job clears its outputs, so CODE
           # arrives empty — which must NOT read as "doc-only". Gate on the job
@@ -193,8 +192,8 @@ jobs:
             echo "Doc-only PR — CI gate passes"
             exit 0
           fi
-          if [[ "$FORMAT" != "success" ]] || [[ "$ANALYZE" != "success" ]] || [[ "$FLOOR" != "success" ]] || [[ "$PLATFORMS" != "success" ]] || [[ "$GUARDS" != "success" ]] || [[ "$UNIT" != "success" ]] || [[ "$WEB" != "success" ]]; then
-            echo "FAILED: format=$FORMAT analyze=$ANALYZE floor=$FLOOR platforms=$PLATFORMS guards=$GUARDS unit=$UNIT web=$WEB"
+          if [[ "$FORMAT" != "success" ]] || [[ "$ANALYZE" != "success" ]] || [[ "$FLOOR" != "success" ]] || [[ "$PLATFORMS" != "success" ]] || [[ "$PKG" != "success" ]] || [[ "$JOURNEYS" != "success" ]]; then
+            echo "FAILED: format=$FORMAT analyze=$ANALYZE floor=$FLOOR platforms=$PLATFORMS pkg=$PKG journeys=$JOURNEYS"
             exit 1
           fi
           echo "All CI checks passed"
