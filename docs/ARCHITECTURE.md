@@ -4,7 +4,7 @@ How the package is wired. One call (`openCellar`), one conditional
 import, one re-export of the core. For capability status see
 [`CAPABILITY_ROADMAP.md`](CAPABILITY_ROADMAP.md); for maintenance
 recipes see [`UPDATING.md`](UPDATING.md); for the engine itself see the
-[core's docs](https://github.com/whuppi/cellar/tree/v1.0.0-dev.0/docs).
+[core's docs](https://github.com/whuppi/cellar/tree/v1.0.0/docs).
 
 ---
 

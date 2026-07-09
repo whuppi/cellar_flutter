@@ -19,7 +19,7 @@ dependencies:
     path: ../
   # Direct dep for the low-level kit imports (EncryptedBackend, the
   # BYO seams) the Encrypt/Custom tabs demonstrate.
-  cellar: ^1.0.0-dev.0
+  cellar: ^1.0.0
 
 dev_dependencies:
   flutter_test:
