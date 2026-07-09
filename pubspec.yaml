@@ -26,7 +26,7 @@ dependencies:
   # certifies the exact version CI ran against; Dependabot bumps it per
   # cellar release. Local co-development: pubspec_overrides.yaml (see
   # CONTRIBUTING).
-  cellar: ^1.0.0-dev.0
+  cellar: ^1.0.0
 
   # Storage roots on native platforms (support + cache directories).
   # Imported only behind the native side of a conditional import — web

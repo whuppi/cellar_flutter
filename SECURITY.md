@@ -1,6 +1,6 @@
 # Security Policy
 
-Covers `cellar_flutter` — the Flutter front door. The storage engine itself (encryption seam, tenant scoping, key grammar, durability) is the `cellar` core, consumed from pub.dev at the locked version; its policy lives at [whuppi/cellar](https://github.com/whuppi/cellar/blob/v1.0.0-dev.0/SECURITY.md) — engine reports go there.
+Covers `cellar_flutter` — the Flutter front door. The storage engine itself (encryption seam, tenant scoping, key grammar, durability) is the `cellar` core, consumed from pub.dev at the locked version; its policy lives at [whuppi/cellar](https://github.com/whuppi/cellar/blob/v1.0.0/SECURITY.md) — engine reports go there.
 
 ## Reporting a vulnerability
 
