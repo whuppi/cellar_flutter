@@ -1,5 +1,5 @@
 name: cellar_flutter
-version: 0.0.0
+version: 1.0.0
 description: >-
   Cross-platform file and data storage for Flutter, zero setup — files
   land in the right folder on Android, iOS, macOS, Windows, Linux, and

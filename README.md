@@ -60,7 +60,7 @@ Partitions with self-cleaning rules, per-user scoping, bring-your-own encryption
 
 ```yaml
 dependencies:
-  cellar_flutter:
+  cellar_flutter: ^1.0.0
 ```
 
 No permissions, no manifest entries, no per-platform Dart — storage lands in your app's private area, which every OS grants for free.
