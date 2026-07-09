@@ -62,9 +62,4 @@ CONTENT RULES (never change)
 
 ## 1.0.0-dev.0
 
-First release — the Flutter front door for `cellar`.
-
-- **API:** `openCellar()` — one call resolves the platform storage roots via path_provider, opens, and returns a ready `Cellar`; mirrors the core constructor's parameters
-- **Re-export:** the full `cellar` core API from one import — apps never also depend on `cellar`
-- **Platforms:** iOS, Android, macOS, Windows, Linux, web — the path_provider glue sits behind a stub-default conditional import, so web builds never compile it
-- **Example:** the seven-tab demo app with device-matrix UI journeys and a per-platform integration smoke
+First release.

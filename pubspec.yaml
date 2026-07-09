@@ -1,10 +1,9 @@
 name: cellar_flutter
 version: 0.0.0
 description: >-
-  The Flutter front door for cellar: openCellar() resolves platform
-  storage roots via path_provider and returns an opened, ready-to-use
-  Cellar — one identical line on iOS, Android, macOS, Windows, Linux,
-  and web. Re-exports the full cellar API.
+  Cross-platform file and data storage for Flutter, zero setup — files
+  land in the right folder on Android, iOS, macOS, Windows, Linux, and
+  web. Caching, auto-cleanup, encryption.
 homepage: https://github.com/whuppi/cellar_flutter
 repository: https://github.com/whuppi/cellar_flutter
 issue_tracker: https://github.com/whuppi/cellar_flutter/issues
@@ -12,26 +11,22 @@ issue_tracker: https://github.com/whuppi/cellar_flutter/issues
 topics:
   - storage
   - cache
+  - files
   - encryption
-  - indexeddb
   - cross-platform
 
-# Not published yet — this line goes away when the repo opens and the
-# release tooling takes over. Consumed by path from sewali + bokumi.
-publish_to: none
-
 environment:
-  sdk: ">=3.11.0-0 <4.0.0"  # -0 floor: the pinned fvm SDK is a 3.11 beta
+  sdk: ">=3.11.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  # The pure-Dart core this package fronts (and re-exports) — a pinned
-  # git submodule of whuppi/cellar. CI clones --recursive; the release
-  # flow swaps this to the published version.
-  cellar:
-    path: cellar
+  # The pure-Dart core this package fronts (and re-exports). The lock
+  # certifies the exact version CI ran against; Dependabot bumps it per
+  # cellar release. Local co-development: pubspec_overrides.yaml (see
+  # CONTRIBUTING).
+  cellar: ^1.0.0
 
   # Storage roots on native platforms (support + cache directories).
   # Imported only behind the native side of a conditional import — web

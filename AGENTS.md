@@ -29,7 +29,7 @@ Manual edits to this file will be overwritten on the next stamp.
 ## What this tool does
 
 cellar_flutter is the Flutter front door for the pure-Dart `cellar`
-object-storage core (pinned as the `cellar/` git submodule). It holds ONLY
+object-storage core (a hosted dependency, version-locked). It holds ONLY
 what needs the Flutter engine: `openCellar()`, which resolves the
 platform storage roots via path_provider (behind a stub-default
 conditional import — web builds never compile path_provider) and
@@ -82,8 +82,9 @@ When in doubt, read existing code in this repo and match it. Per-repo style cons
 
 - **Only engine-bound code lives here.** Anything pure Dart — including
   web code (`package:web` is SDK, not Flutter) — belongs in the
-  `cellar` core (its own repo; pinned here as a submodule). This package exists because path_provider needs the
-  Flutter plugin chain.
+  `cellar` core (its own repo; consumed from pub.dev at the locked
+  version). This package exists because path_provider needs the Flutter
+  plugin chain.
 - **path_provider is imported ONLY in `flutter_roots_native.dart`**,
   behind the conditional import in `flutter_roots.dart` — its API
   returns dart:io types, which don't compile for web. Never import the
@@ -91,10 +92,11 @@ When in doubt, read existing code in this repo and match it. Per-repo style cons
 - **`openCellar` mirrors the core's `Cellar` constructor parameter for
   parameter.** A new core parameter means the same parameter here,
   forwarded, in the same change.
-- **The core is a pinned submodule (`cellar/`, pubspec path dep).**
-  Core changes land in whuppi/cellar first, then the pin bumps here —
-  commit inside the submodule, push there, `git add cellar` here. Run
-  `make check` after any bump.
+- **The core is a hosted dependency; `pubspec.lock` is the pin.**
+  Core changes land and release in whuppi/cellar first; the Dependabot
+  bump PR here certifies them against the matrix. For local
+  co-development use a gitignored `pubspec_overrides.yaml`
+  (`cellar: {path: ../cellar}`).
 - **Tests fake path_provider at `PathProviderPlatform.instance`** (the
   platform-interface seam) and assert storage actually lands under the
   fake roots — never just that calls succeed.

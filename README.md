@@ -1,3 +1,20 @@
+<!--
+  Banner stays <picture> for GitHub's dark/light rendering. pub.dev strips
+  <picture> when sanitizing the README and falls back to the inner <img>
+  (the light variant) — which renders fine there. The heavy *-3x.png
+  sources stay tracked in git; only the optimized *-web-min.webp files
+  ship in the pub archive (see .pubignore). Drop the <picture> wrapper
+  once pub.dev renders it. Tracking: dart-lang/pub-dev#5923.
+-->
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)"  srcset="assets/cellar_flutter-banner-dark-web-min.webp">
+    <source media="(prefers-color-scheme: light)" srcset="assets/cellar_flutter-banner-light-web-min.webp">
+    <img alt="cellar_flutter — object storage for Flutter apps"
+         src="assets/cellar_flutter-banner-light-web-min.webp" width="100%">
+  </picture>
+</p>
+
 <p align="center">
   <a href="https://pub.dev/packages/cellar_flutter"><img src="https://img.shields.io/pub/v/cellar_flutter.svg" alt="pub package"></a>
   <a href="https://pub.dev/packages/cellar_flutter/score"><img src="https://img.shields.io/pub/likes/cellar_flutter" alt="likes"></a>
@@ -6,9 +23,9 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license: MIT"></a>
 </p>
 
-Object storage for Flutter apps. One `openCellar()` call gives you a ready-to-use store on iOS, Android, macOS, Windows, Linux, and web — real files on native, IndexedDB in the browser, identical API everywhere.
+File and data storage for Flutter with zero setup. One call gives you a ready-to-use store on iOS, Android, macOS, Windows, Linux, and web — real files on native, IndexedDB in the browser, identical API everywhere.
 
-Named partitions with self-cleaning lifecycle rules, tenant scoping, bring-your-own encryption, streaming I/O that never buffers a whole object, atomic writes, typed errors, and platform-local handles for FFI and browser APIs. No `kIsWeb`, no platform branches, no setup — anywhere in your code.
+Partitions with self-cleaning rules, per-user scoping, bring-your-own encryption, streaming that never buffers a whole file, atomic writes, typed errors — and a real path or URL whenever a native or browser API needs one. No `kIsWeb`, no platform branches, anywhere in your code.
 
 > like it? a [⭐ star](https://github.com/whuppi/cellar_flutter) or [👍 like](https://pub.dev/packages/cellar_flutter) is the entire marketing budget. [Bugs & features →](https://github.com/whuppi/cellar_flutter/issues)
 
@@ -46,7 +63,7 @@ dependencies:
   cellar_flutter:
 ```
 
-That's the whole setup. No permissions, no manifest entries, no entitlements, no per-platform Dart — storage lands in your app's private area, which every OS grants for free.
+No permissions, no manifest entries, no per-platform Dart — storage lands in your app's private area, which every OS grants for free.
 
 ---
 
@@ -67,7 +84,7 @@ await cellar.delete('notes/hello');
 await cellar.close(); // app shutdown, profile switch, etc.
 ```
 
-`openCellar` is byte-identical on all six platforms. That's the shape of every call after it too: a `/`-separated key in, bytes or metadata out — `write`, `read`, `head`, `list`, `copy`, `materialize`, same shape, a different verb.
+`openCellar` is byte-identical on all six platforms. That's the shape of every call after it: a `/`-separated key in, bytes or metadata out — `write`, `read`, `head`, `list`, `copy`, `materialize`.
 
 <details>
 <summary><b>🧩 what openCellar actually does</b></summary>
@@ -271,11 +288,11 @@ Rule of thumb: **Flutter app → this package. Anything else → `cellar`.** You
 
 ## Not in the box
 
-- **Queries, key-value prefs, sync, user-visible files** — the core's [Not in the box](https://github.com/whuppi/cellar#not-in-the-box) covers what cellar deliberately isn't, and what to reach for instead.
-- **Widgets.** This package is storage, not UI — nothing here draws. Pair `materialize` with your image/video widgets.
-- **Permission flows.** Cellar's locations need no permissions on any platform, so there's nothing to request.
+- **Queries, key-value prefs, sync, user-visible files** — the core's [Not in the box](https://github.com/whuppi/cellar#not-in-the-box) covers what cellar deliberately isn't, with a reasoned WONT_DO row each.
+- **Widgets** — this package is storage, not UI; pair `materialize` with your image/video widgets.
+- **Permission flows** — cellar's locations need none on any platform.
 
-Missing something you need? [Open an issue](https://github.com/whuppi/cellar_flutter/issues); it's how we gauge demand.
+Missing something? [Open an issue](https://github.com/whuppi/cellar_flutter/issues).
 
 ---
 
@@ -293,7 +310,7 @@ The [example app](example/) exercises every capability in one file — seven tab
 | [Capabilities](docs/CAPABILITY_ROADMAP.md) | Status per capability |
 | [Updating](docs/UPDATING.md) | Maintenance recipes and the pinned-behavior watchlist |
 | [Contributing](CONTRIBUTING.md) | Setup, PR workflow, keeping openCellar in lockstep with the core |
-| [cellar's docs](https://github.com/whuppi/cellar/tree/dev/docs) | The engine's architecture, durability mechanics, roadmap |
+| [cellar's docs](https://github.com/whuppi/cellar/tree/v1.0.0/docs) | The engine's architecture, durability mechanics, roadmap |
 
 ---
 

@@ -59,8 +59,8 @@ analyze-floor:
 
 # pana's platform attribution — all six targets must survive the
 # conditional-import walk (the stub default is what makes web attribute).
-# The cellar core is a submodule INSIDE the repo, so the gate's snapshot
-# carries it and the `path: cellar` dep resolves — no wrapper needed.
+# The cellar core is a published hosted dep, so pana resolves it exactly
+# as pub.dev will.
 platforms:
 	@DART="$(DART)" EXPECTED_PLATFORMS="android ios linux macos windows web" bash tool/platforms_gate.sh
 

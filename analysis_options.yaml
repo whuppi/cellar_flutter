@@ -1,10 +1,6 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  exclude:
-    # The pinned cellar core submodule — its own repo analyzes it; here
-    # it's vendored source (same treatment as pdf_manipulator's vendor/).
-    - 'cellar/**'
   language:
     strict-casts: true
     strict-inference: true
